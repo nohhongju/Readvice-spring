@@ -11,5 +11,4 @@ public class HomeController {
     public String now(){
         return new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
     }
-
 }
