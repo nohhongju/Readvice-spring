@@ -1,6 +1,6 @@
-package kr.readvice.api.services;
+package kr.readvice.api.auth.services;
 
-import kr.readvice.api.domains.User;
+import kr.readvice.api.auth.domains.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

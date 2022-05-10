@@ -1,4 +1,4 @@
-package kr.readvice.api.domains;
+package kr.readvice.api.auth.domains;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;

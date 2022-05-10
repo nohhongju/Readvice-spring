@@ -1,4 +1,4 @@
-package kr.readvice.api.controllers;
+package kr.readvice.api.common;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

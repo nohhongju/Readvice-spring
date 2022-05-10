@@ -1,7 +1,8 @@
-package kr.readvice.api.services;
+package kr.readvice.api.auth.services;
 
-import kr.readvice.api.domains.User;
-import kr.readvice.api.repositories.UserRepository;
+import kr.readvice.api.auth.domains.User;
+import kr.readvice.api.auth.repositories.UserRepository;
+import kr.readvice.api.auth.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor // 레파지토리(부모)랑 서비스(자식)랑 연결
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private final UserRepository repository;
 
     @Override
