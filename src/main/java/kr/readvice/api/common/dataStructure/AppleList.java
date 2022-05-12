@@ -137,7 +137,6 @@ public class AppleList {
                     .collect(Collectors.toList());
 
         }
-
         @Override
         public List<Apple> findByColor(String color) {
             return null;
