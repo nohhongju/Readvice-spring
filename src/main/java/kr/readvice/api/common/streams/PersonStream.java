@@ -6,10 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PersonStream {
@@ -20,10 +18,11 @@ public class PersonStream {
     public static class Person {
         private String name, ssn;
 
-        @Override
+        @Override // 123-parseInt(substring(0,2))
         public String toString(){
             String gender = ssn.substring(7).equals("1") || ssn.substring(7).equals("3")? "남자":"여자";
-            String age = 
+            int yy = Integer.parseInt(ssn.substring(0, 2));
+            int age = (yy <= 20)? 23-yy:123-yy;
             return String.format(" %s, %s, %s", name, gender, age);
         }
     }
