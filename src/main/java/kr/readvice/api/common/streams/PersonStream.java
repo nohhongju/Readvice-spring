@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,29 +18,24 @@ public class PersonStream {
     @Getter
     public static class Person {
         private String name, ssn;
-
-        @Override // 123-parseInt(substring(0,2))
+        private boolean getGenderChecker(String ssnG){
+            return ssn.substring(7).equals(ssnG);
+        }
+        @Override
         public String toString(){
-            String gender = ssn.substring(7).equals("1") || ssn.substring(7).equals("3")? "남자":"여자";
+            String gender = getGenderChecker("1") || getGenderChecker("3")? "남자":"여자";
+            LocalDate now = LocalDate.now();
+            int year = now.getYear();
             int yy = Integer.parseInt(ssn.substring(0, 2));
-            int age = (yy <= 20)? 23-yy:123-yy;
+            int age = getGenderChecker("1") || getGenderChecker("2")? year-(1900+yy)+1:year-(2000+yy)+1; // 1의 의미 - 한국나이로 태어나면 1살부터 시작
             return String.format(" %s, %s, %s", name, gender, age);
         }
     }
     //기능: 회원검색
-    interface PersonService{
+    @FunctionalInterface interface PersonService{
         Person search(List<Person> arr);
     }
-    static class PersonServiceImpl implements PersonService{
 
-        @Override
-        public Person search(List<Person> arr) {
-            return arr
-                    .stream()
-                    .filter(e -> e.getName().equals("유관순"))
-                    .collect(Collectors.toList()).get(0);
-        }
-    }
     @Test
     void personStreamTest(){
         // "홍길동", "900120-1"
@@ -51,7 +47,10 @@ public class PersonStream {
                 Person.builder().name("김유신").ssn("970620-1").build(),
                 Person.builder().name("유관순").ssn("040920-4").build()
         );
-        System.out.println(new PersonServiceImpl()
-                .search(arr));
+        PersonService ps = persons -> persons
+                .stream()
+                .filter(e -> e.getName().equals("홍길동"))
+                .collect(Collectors.toList()).get(0);
+        System.out.println(ps.search(arr));
     }
 }
