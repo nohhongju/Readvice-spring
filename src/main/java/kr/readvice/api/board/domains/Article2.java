@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Data
 @Component
 @Entity
-@Table(name="articles")
-public class Article {
+//@Table(name="articles")
+public class Article2 {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String projects;

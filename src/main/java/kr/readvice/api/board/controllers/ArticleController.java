@@ -1,6 +1,6 @@
 package kr.readvice.api.board.controllers;
 
-import kr.readvice.api.board.domains.Article;
+import kr.readvice.api.board.domains.Article2;
 import kr.readvice.api.board.services.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,17 +18,17 @@ public class ArticleController {
     private final ArticleService service;
 
     @GetMapping("/findAll")
-    public List<Article> findAll() {
+    public List<Article2> findAll() {
         return service.findAll();
     }
 
     @GetMapping("/findAll/sort")
-    public List<Article> findAll(Sort sort) {
+    public List<Article2> findAll(Sort sort) {
         return service.findAll(sort);
     }
 
     @GetMapping("/findAll/pageable")
-    public Page<Article> findAll(Pageable pageable) {
+    public Page<Article2> findAll(Pageable pageable) {
         return service.findAll(pageable);
     }
 
@@ -38,12 +38,12 @@ public class ArticleController {
     }
 
     @DeleteMapping("/delete")
-    public String delete(@RequestBody Article article) {
+    public String delete(@RequestBody Article2 article) {
         return service.delete(article);
     }
 
     @PostMapping("/join")
-    public String save(@RequestBody Article article) {
+    public String save(@RequestBody Article2 article) {
         return service.save(article);
     }
 }

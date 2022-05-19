@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Data
 @Component
 @Entity
-@Table(name="boards")
-public class Board {
+//@Table(name="boards")
+public class Board2 {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 }
