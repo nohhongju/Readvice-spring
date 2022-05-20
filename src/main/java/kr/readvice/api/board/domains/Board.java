@@ -1,4 +1,4 @@
-package kr.readvice.api.auth.domains;
+package kr.readvice.api.board.domains;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;

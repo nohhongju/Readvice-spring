@@ -1,6 +1,7 @@
 package kr.readvice.api.auth.domains;
 
 import com.sun.istack.NotNull;
+import kr.readvice.api.board.domains.Article;
 import lombok.*;
 import org.springframework.data.repository.cdi.Eager;
 import org.springframework.stereotype.Component;

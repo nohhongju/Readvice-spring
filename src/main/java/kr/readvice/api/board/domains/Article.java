@@ -1,11 +1,11 @@
-package kr.readvice.api.auth.domains;
+package kr.readvice.api.board.domains;
 
 import com.sun.istack.NotNull;
+import kr.readvice.api.auth.domains.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.repository.cdi.Eager;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;

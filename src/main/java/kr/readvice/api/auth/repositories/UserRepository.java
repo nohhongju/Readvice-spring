@@ -5,10 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 interface UserCustomRepository{
+    // 000. 사용자의 비밀번호와 이메일를 수정하시오.
     String login(User user);
-    void put(User user);
+     void update(User user);
 }
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>, UserCustomRepository{
+public interface UserRepository extends JpaRepository<User, Long>{
+
 
 }

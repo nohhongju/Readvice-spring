@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController // 빈 컴포넌트(프로퍼티와 메소드를 갔는다.)
-@RequestMapping("/user") // url
+@RequestMapping("/users") // url
 @RequiredArgsConstructor // 서비스(부모)랑 컨트롤러(자식)랑 연결
 public class UserController {
 
