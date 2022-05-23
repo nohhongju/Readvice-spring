@@ -1,4 +1,4 @@
-spring:
+spring:  #스프링부트
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/readvicedb?characterEncoding=UTF-8&serverTimezone=UTC
@@ -12,6 +12,16 @@ spring:
       hibernate:
         format_sql: true #To beautify or pretty print the SQL
         show_sql: true #show sql
+        dialect: org.hibernate.dialect.MariaDBDialect
+
+security:
+  jwt:
+    token:
+      security-key: secret-key
+      expiration-length: 3600000
+
+server:
+  port: 8080
 
 logging:
   level:
