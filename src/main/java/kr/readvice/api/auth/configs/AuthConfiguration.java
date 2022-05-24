@@ -1,4 +1,4 @@
-package kr.readvice.api.security.configs;
+package kr.readvice.api.auth.configs;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 @Configuration
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class AuthConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
@@ -24,6 +24,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/join").permitAll() //접근할 수 있는?
                 .antMatchers("/users/login").permitAll()
                 .anyRequest().authenticated();
-        http.exceptionHandling().accessDeniedPage(".users/login"); // 권한 없는 사람이 들어가면 로그인 페이지로
+        http.exceptionHandling().accessDeniedPage("/users/login"); // 권한 없는 사람이 들어가면 로그인 페이지로
     }
 }

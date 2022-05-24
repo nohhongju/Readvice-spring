@@ -1,6 +1,6 @@
 package kr.readvice.api.common.dataStructure;
 
-import kr.readvice.api.auth.domains.User;
+import kr.readvice.api.user.domains.User;
 import lombok.Data;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

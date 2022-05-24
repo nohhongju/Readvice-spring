@@ -1,10 +1,9 @@
-package kr.readvice.api.auth.domains;
+package kr.readvice.api.user.domains;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 @Getter // 읽기만 가능하다.수정 불가능
