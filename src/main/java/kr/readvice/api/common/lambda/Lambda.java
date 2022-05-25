@@ -28,6 +28,15 @@ public class Lambda {
         Function<String, Integer> f = Integer::parseInt;
         return f.apply(s);
     }
+    public static long longParse(String s){
+        Function<String, Long> f = Long::parseLong;
+        return f.apply(s);
+    }
+    public static float floatParse(String o){
+        Function<String, Float> f = Float::valueOf;
+        return f.apply(o);
+    }
+
     public static String string(Object o){
         // String s = String.valueOf(o);
         Function<Object, String> f = String::valueOf;

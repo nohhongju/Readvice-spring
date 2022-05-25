@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component @Data
-public class UserDto {
+public class UserDTO {
     @ApiModelProperty(position = 1 ) private long userId;
     @ApiModelProperty(position = 2 ) String username;
     @ApiModelProperty(position = 3 ) String password;

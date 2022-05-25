@@ -19,5 +19,5 @@ interface UserCustomRepository{
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
     Optional<User> findByUsername(String username);
-
+    //null일 수도 아닌 수도 있다.
 }
