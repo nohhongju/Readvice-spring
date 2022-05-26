@@ -13,9 +13,10 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-
+@ToString
+@Setter //보안때문에 안쓴다.
 @Entity
-@Eager
+
 @Table(name="users")
 public class User {
     @Id @Column(name = "user_id")

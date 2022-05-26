@@ -12,7 +12,6 @@ spring:  #스프링부트
       hibernate:
         format_sql: true #To beautify or pretty print the SQL
         show_sql: true #show sql
-        dialect: org.hibernate.dialect.MariaDBDialect
 
 security:
   jwt:

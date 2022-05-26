@@ -1,9 +1,13 @@
 package kr.readvice.api.common.lambda;
 
+import static java.time.LocalDate.now;
 import static kr.readvice.api.common.dataStructure.AppleList.Apple;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.function.*;
 
 public class Lambda {
@@ -64,5 +68,9 @@ public class Lambda {
     public static File makeFile(String a){
         Function<String, File> f = File::new;
         return f.apply(a);
+    }
+    public static String date(){
+        Supplier<String> f = () -> new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        return f.get();
     }
 }

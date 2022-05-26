@@ -22,8 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static kr.readvice.api.common.lambda.Lambda.longParse;
-import static kr.readvice.api.common.lambda.Lambda.string;
+import static kr.readvice.api.common.lambda.Lambda.*;
 
 @Service
 @RequiredArgsConstructor // 레파지토리(부모)랑 서비스(자식)랑 연결
@@ -34,16 +33,23 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
 
     @Override
-    public UserDTO login(User user) { // DB행 객체 user - 엔티티
+    public UserDTO login(UserDTO paramUser) { // DB행 객체 user - 엔티티
         try {
-            UserDTO userDTO = modelMapper.map(user, UserDTO.class);// 같은 속성끼리 그대로 전달하는 것을 map
-            User findUser = repository.findByUsername(user.getUsername()).orElse(null); //null허용
-            String pw = repository.findByUsername(user.getUsername()).get().getPassword();
-            boolean checkPassword = encoder.matches(user.getPassword(),pw);
-            String username = user.getUsername();
-            List<Role> roles = findUser.getRoles();
-            String token = checkPassword ? provider.createToken(username, roles) : "Wrong Password";
-            return userDTO; //
+            UserDTO returnUser = new UserDTO();
+            String username = paramUser.getUsername();
+            User findUser = repository.findByUsername(username).orElse(null); //null허용
+            if (findUser != null){  //null이 아닐 때 로직을 실행하라
+                boolean checkPassword = encoder.matches(paramUser.getPassword(),findUser.getPassword()); //조심!!
+                if (checkPassword){
+                    returnUser = modelMapper.map(findUser, UserDTO.class);// 같은 속성끼리 그대로 전달하는 것을 map
+                    String token = provider.createToken(username, returnUser.getRoles());
+                    returnUser.setToken(token);
+                }else {
+                    String token = "FAILURE";
+                    returnUser.setToken(token);
+                }
+            }
+            return returnUser; //
         }catch (Exception e){
             throw new SecurityRuntimeException("유효하지 않은 아이디/비밀번호", HttpStatus.UNPROCESSABLE_ENTITY);
         }
@@ -81,15 +87,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Messenger save(User user) {
+    public Messenger save(UserDTO user) {
+        System.out.println("서비스로 전달된 회원가입 정보: "+user.toString());
         String result = "";
-        String tempId = user.getUsername();
-        if (repository.findByUsername(tempId).isEmpty()){ // null이여야 넣을 수 있다. o == null ? true: false 원래 삼항으로 표현되지만 생략가능
+        if(repository.findByUsername(user.getUsername()).isEmpty()){     // null이여야 넣을 수 있다. o == null ? true: false 원래 삼항으로 표현되지만 생략가능
             List<Role> list = new ArrayList<>();
             list.add(Role.USER);
-            repository.save(User.builder().password(encoder.encode(user.getPassword())).build());
-            result = "SECCESs";
-        }else {
+            repository.save(User.builder()
+                    .username(user.getUsername())
+                    .name(user.getName())
+                    .regDate(user.getRegDate())
+                    .email(user.getEmail())
+                    .password(encoder.encode(user.getPassword()))
+                    .roles(list).build());
+            result = "SUCCESS";
+        }else{
             result = "FAIL";
         }
         return Messenger.builder().message(result).build();
@@ -118,6 +130,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Messenger logout() {
-        return null;
+        return Messenger.builder().build();
     }
 }
